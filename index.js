@@ -18294,7 +18294,19 @@ module.exports = warning;
 },{"./emptyFunction":"/Users/osidat/Development/personal/balls/node_modules/react/lib/emptyFunction.js","_process":"/Users/osidat/Development/personal/balls/node_modules/browserify/node_modules/process/browser.js"}],"/Users/osidat/Development/personal/balls/node_modules/react/react.js":[function(require,module,exports){
 module.exports = require('./lib/React');
 
-},{"./lib/React":"/Users/osidat/Development/personal/balls/node_modules/react/lib/React.js"}],"/Users/osidat/Development/personal/balls/source/scripts/components/Ball.js":[function(require,module,exports){
+},{"./lib/React":"/Users/osidat/Development/personal/balls/node_modules/react/lib/React.js"}],"/Users/osidat/Development/personal/balls/source/scripts/components/AddBall.js":[function(require,module,exports){
+var AddBall = React.createClass({displayName: "AddBall",
+  render: function() {
+    return(
+      React.createElement("button", {className: "addBall", onClick: this.props.onClick, title: "Add Ball"}, "+")
+    )
+  }
+});
+
+module.exports = AddBall;
+
+
+},{}],"/Users/osidat/Development/personal/balls/source/scripts/components/Ball.js":[function(require,module,exports){
 var Loop = require('./../util/Loop');
 var Random = require('./../util/RandomInRange');
 
@@ -18360,25 +18372,35 @@ module.exports = Ball;
 
 
 },{"./../util/Loop":"/Users/osidat/Development/personal/balls/source/scripts/util/Loop.js","./../util/RandomInRange":"/Users/osidat/Development/personal/balls/source/scripts/util/RandomInRange.js"}],"/Users/osidat/Development/personal/balls/source/scripts/components/Game.js":[function(require,module,exports){
+var AddBall = require('./AddBall');
 var Ball = require('./Ball');
 
 var Game = React.createClass({displayName: "Game",
-    render: function() {
-        return (
-          React.createElement("div", null, 
-            React.createElement(Ball, null), 
-            React.createElement(Ball, null), 
-            React.createElement(Ball, null), 
-            React.createElement(Ball, null)
-          )
-        );
+  getInitialState: function() {
+    return {balls: 0};
+  },
+  handleAdd: function() {
+    this.setState({balls: this.state.balls + 1});
+    console.log(this.state.balls);
+  },
+  render: function() {
+    var balls = [];
+    for(var i = 0; i < this.state.balls; i++) {
+      balls.push(React.createElement(Ball, null));
     }
+    return (
+      React.createElement("div", null, 
+        React.createElement(AddBall, {onClick: this.handleAdd}), 
+        balls
+      )
+    );
+  }
 });
 
 module.exports = Game;
 
 
-},{"./Ball":"/Users/osidat/Development/personal/balls/source/scripts/components/Ball.js"}],"/Users/osidat/Development/personal/balls/source/scripts/util/Loop.js":[function(require,module,exports){
+},{"./AddBall":"/Users/osidat/Development/personal/balls/source/scripts/components/AddBall.js","./Ball":"/Users/osidat/Development/personal/balls/source/scripts/components/Ball.js"}],"/Users/osidat/Development/personal/balls/source/scripts/util/Loop.js":[function(require,module,exports){
 /* The Loop Utility Function, from https://github.com/ehgoodenough/ponk/blob/master/source/scripts/Loop.js */
 
 var Loop = function(func) {

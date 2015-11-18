@@ -19,3 +19,18 @@ html {
   font-family: 'Helvetica';
   color: #eee;
   background-color: #222; }
+
+.addBall {
+  background: none;
+  border-radius: 50%;
+  border: 1px solid white;
+  width: 40px;
+  height: 40px;
+  padding-bottom: 4px;
+  opacity: 0.4;
+  margin: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 20px; }
+  .addBall:hover {
+    opacity: 0.8; }
