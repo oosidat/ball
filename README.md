@@ -1,6 +1,6 @@
 # balls #
 
-An awesome game.
+Following along [Andrew McPherson's React 2D Game](https://www.youtube.com/watch?v=XD4seEJD9Lo) tutorial.
 
 ## Installation ##
 

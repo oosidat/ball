@@ -1,12 +1,13 @@
 var Loop = require("<scripts>/util/Loop");
+var Random = require("<scripts>/util/RandomInRange");
 
 var Ball = React.createClass({
   getInitialState: function() {
     return {
       windowWidth: window.innerWidth,
       windowHeight: window.innerHeight,
-      x: 100,
-      y: 100,
+      x: Random(100, window.innerWidth),
+      y: Random(100, window.innerHeight),
       vx: 150,
       vy: 150,
       diameter: 40
@@ -26,13 +27,13 @@ var Ball = React.createClass({
         y: this.state.y + (this.state.vy * tick)
       });
 
-      if(this.state.x < 0 || (this.state.x + this.state.diameter) > this.state.windowHeight) {
+      if(this.state.x < 0 || (this.state.x + this.state.diameter) > this.state.windowWidth) {
         this.setState({
           vx: this.state.vx * -1
         });
       }
 
-      if(this.state.y < 0 || (this.state.y + this.state.diameter) > this.state.windowWidth) {
+      if(this.state.y < 0 || (this.state.y + this.state.diameter) > this.state.windowHeight) {
         this.setState({
           vy: this.state.vy * -1
         });
@@ -46,11 +47,11 @@ var Ball = React.createClass({
     var style = {
       width: this.state.diameter,
       height: this.state.diameter,
+      top: this.state.y,
+      left: this.state.x,
       position: "absolute",
-      top: this.state.x,
-      left: this.state.y,
       backgroundColor: "red",
-      borderRadius: "20px",
+      borderRadius: "50%",
     };
     return (
       <div style={style}></div>

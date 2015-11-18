@@ -5,6 +5,9 @@ var Game = React.createClass({
         return (
           <div>
             <Ball/>
+            <Ball/>
+            <Ball/>
+            <Ball/>
           </div>
         );
     }
