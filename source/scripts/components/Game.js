@@ -1,13 +1,13 @@
-var GameFrame = require("<scripts>/components/GameFrame")
+var Ball = require("<scripts>/components/Ball");
 
 var Game = React.createClass({
     render: function() {
         return (
-            <GameFrame>
-                Hello World!
-            </GameFrame>
-        )
+          <div>
+            <Ball/>
+          </div>
+        );
     }
-})
+});
 
-module.exports = Game
+module.exports = Game;

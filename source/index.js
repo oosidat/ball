@@ -1,4 +1,5 @@
-window.React = require("react")
+window.React = require("react");
 
-var Game = require("<scripts>/components/Game")
-React.render(<Game/>, document.body)
+var Game = require("<scripts>/components/Game");
+
+React.render(<Game/>, document.body);
