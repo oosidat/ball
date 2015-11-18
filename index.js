@@ -18296,14 +18296,15 @@ module.exports = require('./lib/React');
 
 },{"./lib/React":"/Users/osidat/Development/personal/balls/node_modules/react/lib/React.js"}],"/Users/osidat/Development/personal/balls/source/scripts/components/Ball.js":[function(require,module,exports){
 var Loop = require('./../util/Loop');
+var Random = require('./../util/RandomInRange');
 
 var Ball = React.createClass({displayName: "Ball",
   getInitialState: function() {
     return {
       windowWidth: window.innerWidth,
       windowHeight: window.innerHeight,
-      x: 100,
-      y: 100,
+      x: Random(100, window.innerWidth),
+      y: Random(100, window.innerHeight),
       vx: 150,
       vy: 150,
       diameter: 40
@@ -18323,13 +18324,13 @@ var Ball = React.createClass({displayName: "Ball",
         y: this.state.y + (this.state.vy * tick)
       });
 
-      if(this.state.x < 0 || (this.state.x + this.state.diameter) > this.state.windowHeight) {
+      if(this.state.x < 0 || (this.state.x + this.state.diameter) > this.state.windowWidth) {
         this.setState({
           vx: this.state.vx * -1
         });
       }
 
-      if(this.state.y < 0 || (this.state.y + this.state.diameter) > this.state.windowWidth) {
+      if(this.state.y < 0 || (this.state.y + this.state.diameter) > this.state.windowHeight) {
         this.setState({
           vy: this.state.vy * -1
         });
@@ -18343,11 +18344,11 @@ var Ball = React.createClass({displayName: "Ball",
     var style = {
       width: this.state.diameter,
       height: this.state.diameter,
+      top: this.state.y,
+      left: this.state.x,
       position: "absolute",
-      top: this.state.x,
-      left: this.state.y,
       backgroundColor: "red",
-      borderRadius: "20px",
+      borderRadius: "50%",
     };
     return (
       React.createElement("div", {style: style})
@@ -18358,13 +18359,16 @@ var Ball = React.createClass({displayName: "Ball",
 module.exports = Ball;
 
 
-},{"./../util/Loop":"/Users/osidat/Development/personal/balls/source/scripts/util/Loop.js"}],"/Users/osidat/Development/personal/balls/source/scripts/components/Game.js":[function(require,module,exports){
+},{"./../util/Loop":"/Users/osidat/Development/personal/balls/source/scripts/util/Loop.js","./../util/RandomInRange":"/Users/osidat/Development/personal/balls/source/scripts/util/RandomInRange.js"}],"/Users/osidat/Development/personal/balls/source/scripts/components/Game.js":[function(require,module,exports){
 var Ball = require('./Ball');
 
 var Game = React.createClass({displayName: "Game",
     render: function() {
         return (
           React.createElement("div", null, 
+            React.createElement(Ball, null), 
+            React.createElement(Ball, null), 
+            React.createElement(Ball, null), 
             React.createElement(Ball, null)
           )
         );
@@ -18385,6 +18389,14 @@ var Loop = function(func) {
 };
 
 module.exports = Loop;
+
+
+},{}],"/Users/osidat/Development/personal/balls/source/scripts/util/RandomInRange.js":[function(require,module,exports){
+var RandomInRange = function(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+module.exports = RandomInRange;
 
 
 },{}]},{},["./source/index.js"]);
