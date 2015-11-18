@@ -5,6 +5,7 @@ bower_components
 *.log
 .DS_Store
 
+.publish
 build
 nw-apps
 gh-pages

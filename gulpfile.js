@@ -8,6 +8,7 @@ var gulp_minify_css = require("gulp-minify-css")
 var gulp_minify_html = require("gulp-minify-html")
 var gulp_prefixify_css = require("gulp-autoprefixer")
 var gulp_json_transform = require("gulp-json-transform")
+var gulp_gh_pages = require("gulp-gh-pages")
 
 var watchify = require("watchify")
 var browserify = require("browserify")
@@ -126,6 +127,11 @@ gulp.task("server", function() {
         port: 8080
     })
     opn("http://localhost:8080")
+})
+
+gulp.task("deploy", function() {
+  return gulp.src('./build/**/*')
+    .pipe(gulp_gh_pages())
 })
 
 process.on("uncaughtException", function (error) {
