@@ -18315,8 +18315,8 @@ var Ball = React.createClass({displayName: "Ball",
     return {
       windowWidth: window.innerWidth,
       windowHeight: window.innerHeight,
-      x: Random(100, window.innerWidth),
-      y: Random(100, window.innerHeight),
+      x: Random(100, window.innerWidth - 40),
+      y: Random(100, window.innerHeight - 40),
       vx: 150,
       vy: 150,
       diameter: 40
